@@ -1,0 +1,41 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# FastAPI / Uvicorn
+*.log
+
+# LangGraph / AI module artifacts
+ai_module/cache/
+ai_module/__pycache__/
+*.json.tmp
+*.pickle
+
+# Model files
+*.bin
+*.pt
+*.ckpt
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# Jupyter (if ever used)
+.ipynb_checkpoints/
+
+# IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Environment variables
+.env
+.env.*

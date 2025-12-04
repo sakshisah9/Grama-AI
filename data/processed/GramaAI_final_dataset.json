@@ -1,0 +1,162 @@
+{
+  "villages": [
+    {
+      "village_name": "Hiware Bazar",
+      "district": "Ahmednagar",
+      "taluka": "Nagar",
+      "state": "Maharashtra",
+      "area_sq_km": 9.89,
+      "area_acres": 2444.24,
+      "population_total": 1233,
+      "population_male": 636,
+      "population_female": 597,
+      "households": 246,
+      "population_density": 124.63,
+      "land_use": {
+        "forest_ha": 70,
+        "non_agri_ha": 2.75,
+        "barren_land_ha": 101,
+        "grassland_ha": 4,
+        "misc_crop_ha": 5,
+        "cultivable_waste_ha": 13.45,
+        "net_cultivated_ha": 780.65,
+        "irrigated_ha": 379.65,
+        "unirrigated_ha": 401
+      },
+      "water_sources": {
+        "tap": 1,
+        "covered_well": 1,
+        "uncovered_well": 1,
+        "handpump": 1,
+        "borewell": 2,
+        "spring": 2
+      },
+      "education": {
+        "primary": 1,
+        "middle": 1,
+        "secondary": 1,
+        "senior_secondary": 2
+      },
+      "health": {
+        "dispensary": 1,
+        "sub_center": 1,
+        "veterinary": 1
+      },
+      "roads": {
+        "blacktop": 1,
+        "gravel": 1
+      },
+      "transport": {
+        "public_bus": 1,
+        "private_bus": 2,
+        "auto": 2,
+        "taxi": 2
+      },
+      "infrastructure": {
+        "post_office": 1,
+        "mobile_coverage": 1,
+        "commercial_bank": 2,
+        "cooperative_bank": 2,
+        "atm": 2
+      },
+      "sanitation": {
+        "latrine_available": 89.9,
+        "latrine_not_available": 10.1,
+        "bathroom_available": 72.7,
+        "drainage_closed": 2.1,
+        "drainage_open": 0.4
+      },
+      "fuel": {
+        "wood": 32.8,
+        "lpg": 26.5
+      },
+      "assets": {
+        "electricity": 84.9,
+        "mobile": 68.1,
+        "tv": 73.1,
+        "cycle": 79.8,
+        "motorcycle": 55.5,
+        "car": 8.8
+      }
+    },
+    {
+      "village_name": "Ralegan Siddhi",
+      "district": "Ahmednagar",
+      "taluka": "Parner",
+      "state": "Maharashtra",
+      "area_sq_km": 10.01,
+      "area_acres": 2473.51,
+      "population_total": 2365,
+      "population_male": 1217,
+      "population_female": 1148,
+      "households": 530,
+      "population_density": 236.76,
+      "land_use": {
+        "forest_ha": 136.15,
+        "non_agri_ha": 3.53,
+        "barren_land_ha": 108.3,
+        "grassland_ha": 0,
+        "misc_crop_ha": 0,
+        "cultivable_waste_ha": 0,
+        "net_cultivated_ha": 715.32,
+        "irrigated_ha": 286.14,
+        "unirrigated_ha": 429.18
+      },
+      "water_sources": {
+        "tap": 1,
+        "covered_well": 1,
+        "uncovered_well": 1,
+        "handpump": 1,
+        "borewell": 2,
+        "spring": 2
+      },
+      "education": {
+        "primary": 1,
+        "middle": 1,
+        "secondary": 1,
+        "senior_secondary": 1
+      },
+      "health": {
+        "dispensary": 1,
+        "sub_center": 1,
+        "veterinary": 0
+      },
+      "roads": {
+        "blacktop": 1,
+        "gravel": 1
+      },
+      "transport": {
+        "public_bus": 1,
+        "private_bus": 2,
+        "auto": 1,
+        "taxi": 1
+      },
+      "infrastructure": {
+        "post_office": 1,
+        "mobile_coverage": 1,
+        "commercial_bank": 2,
+        "cooperative_bank": 2,
+        "atm": 2
+      },
+      "sanitation": {
+        "latrine_available": 65.7,
+        "latrine_not_available": 34.3,
+        "bathroom_available": 74.7,
+        "drainage_closed": 29.8,
+        "drainage_open": 3.9
+      },
+      "fuel": {
+        "wood": 39,
+        "lpg": 52.5
+      },
+      "assets": {
+        "electricity": 94.1,
+        "mobile": 55.1,
+        "tv": 69.4,
+        "cycle": 49.6,
+        "motorcycle": 41.2,
+        "car": 4.7
+      }
+    }
+  ]
+}
