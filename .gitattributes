@@ -1,23 +1,21 @@
-# =====================================
-#   General Text Normalization
-# =====================================
-# Force LF for all text files (cross-platform safe)
+# ===============================
+#   Normalization (LF only)
+# ===============================
 * text=auto eol=lf
 
-# =====================================
-#   Backend (Python + FastAPI)
-# =====================================
+# ===============================
+#   Backend (Python)
+# ===============================
 *.py              text eol=lf
 *.txt             text eol=lf
 *.md              text eol=lf
 *.toml            text eol=lf
 *.yaml            text eol=lf
 *.yml             text eol=lf
-requirements.txt  text eol=lf
 
-# =====================================
+# ===============================
 #   Frontend (React + Vite)
-# =====================================
+# ===============================
 *.js              text eol=lf
 *.jsx             text eol=lf
 *.ts              text eol=lf
@@ -26,47 +24,43 @@ requirements.txt  text eol=lf
 *.html            text eol=lf
 *.json            text eol=lf
 
-# =====================================
-#   GeoJSON / GIS Files
-# =====================================
-# Prevent CRLF issues — geojson must stay LF only
+# ===============================
+#   GIS / GeoJSON
+# ===============================
 *.geojson         text eol=lf
 *.topojson        text eol=lf
-*.map             text eol=lf
 
-# =====================================
-#   Jupyter Notebooks
-# =====================================
+# ===============================
+#   Notebooks
+# ===============================
 *.ipynb           text eol=lf
 
-# =====================================
-#   Images / Binaries (never modify)
-# =====================================
+# ===============================
+#   Images / Binary Files
+# ===============================
 *.png             binary
 *.jpg             binary
 *.jpeg            binary
 *.gif             binary
-*.svg             text  # svg is XML, keep as text
+*.svg             text
 *.pdf             binary
 
-# =====================================
-#   Database / Serialized Files
-# =====================================
+# ===============================
+#   DB / Model Files
+# ===============================
 *.db              binary
 *.sqlite          binary
 *.pkl             binary
 *.bin             binary
 
-# =====================================
+# ===============================
 #   GitHub Linguist Overrides
-# =====================================
-# Make repo detected primarily as Python + AI/ML
+# ===============================
 *.py linguist-detectable=true
 *.ipynb linguist-detectable=true
 *.json linguist-vendored=false
 *.yml linguist-vendored=false
 *.yaml linguist-vendored=false
 
-# Ignore build artifacts as "generated"
-frontend/dist/*   linguist-generated=true
+frontend/dist/* linguist-generated=true
 backend/__pycache__/* linguist-generated=true

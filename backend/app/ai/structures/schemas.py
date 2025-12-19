@@ -42,3 +42,11 @@ class SustainabilityReport(BaseModel):
     weaknesses: List[str] = Field(..., description="Key weaknesses or risks")
     recommendations: List[str] = Field(..., description="Actionable recommendations")
     priority_actions: List[str] = Field(..., description="Top priority actions (ordered)")
+
+class PlanningResult(BaseModel):
+    """
+    Final consolidated output of the planning pipeline.
+    """
+    layout: LayoutOutput
+    sustainability_score: float
+    sustainability_report: SustainabilityReport

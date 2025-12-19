@@ -3,10 +3,11 @@
 from app.ai.graph.planning_graph import build_planning_graph
 from app.ai.structures.state import FlowState
 
+
 def test_graph_run():
     graph = build_planning_graph()
 
-    # Sample test input (replace with real dataset later)
+    # Sample test input (minimal but sufficient)
     initial_state: FlowState = {
         "village_data": {
             "population": 1500,
@@ -17,15 +18,34 @@ def test_graph_run():
         }
     }
 
-    print("\n Running Grama-AI Pipeline...\n")
+    print("\n🚀 Running Grama-AI Pipeline...\n")
 
     final_state = graph.invoke(initial_state)
 
-    print("=== FINAL STATE OUTPUT ===")
-    for key, value in final_state.items():
-        print(f"\n🔹 {key.upper()}:\n{value}")
+    print("=== PIPELINE EXECUTION COMPLETE ===")
 
-    print("\n Pipeline executed successfully!\n")
+    # ---- Sanity checks ----
+    if "result" not in final_state:
+        raise RuntimeError(
+            "❌ Pipeline did not produce 'result'. "
+            "Check final node (report_generator)."
+        )
+
+    result = final_state["result"]
+
+    # ---- Print final consolidated output ----
+    print("\n✅ FINAL RESULT (state['result'])\n")
+
+    print("📐 LAYOUT:")
+    print(result.layout)
+
+    print("\n🌱 SUSTAINABILITY SCORE:")
+    print(result.sustainability_score)
+
+    print("\n📄 SUSTAINABILITY REPORT:")
+    print(result.sustainability_report)
+
+    print("\n🎉 Test completed successfully!\n")
 
 
 if __name__ == "__main__":

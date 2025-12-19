@@ -1,0 +1,17 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set default font */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Map container fix for Leaflet */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}

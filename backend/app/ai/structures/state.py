@@ -1,5 +1,6 @@
 from typing import TypedDict, Dict, Any
-from app.ai.structures.schemas import LayoutOutput, SustainabilityReport
+from app.ai.structures.schemas import LayoutOutput, SustainabilityReport, PlanningResult
+
 
 class FlowState(TypedDict, total=False):
     """
@@ -7,15 +8,22 @@ class FlowState(TypedDict, total=False):
     Fields are filled progressively by each node.
     """
 
-    # Input from FastAPI or dataset
+    # 🔑 REQUIRED INPUTS (MUST be declared or LangGraph drops them)
+    village: str
+    inputs: Dict[str, Any]
+
+    # 🔑 DATASET (loaded from JSON)
     village_data: Dict[str, Any]
 
-    # Feature Engineering Output
+    # 🔑 FEATURE ENGINEERING OUTPUT
     features: Dict[str, float]
 
-    # Layout Planner Output
+    # 🔑 LAYOUT OUTPUT
     layout: LayoutOutput
 
-    # Sustainability Node Output
+    # 🔑 SCORING OUTPUT
     sustainability_score: float
     sustainability_report: SustainabilityReport
+
+    # 🔑 FINAL AGGREGATED RESULT
+    result: PlanningResult
