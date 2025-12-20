@@ -1,7 +1,6 @@
-// src/pages/QuickPrototype.jsx
-
 import React, { useState } from "react";
 import MapRenderer from "../components/MapRenderer";
+import logo from "../assets/logo.png";
 
 /* ================= Village Presets ================= */
 
@@ -33,13 +32,9 @@ export default function QuickPrototype() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  /* ================= Helpers ================= */
-
   const updateField = (key, value) => {
     setInputs((prev) => ({ ...prev, [key]: value }));
   };
-
-  /* ================= API Call ================= */
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -67,8 +62,6 @@ export default function QuickPrototype() {
       }
 
       const aiResult = await res.json();
-
-      // ✅ Directly use backend output (already structured)
       setLayout(aiResult.layout);
       setScore(aiResult.sustainability_score);
       setReport(aiResult.sustainability_report);
@@ -80,17 +73,38 @@ export default function QuickPrototype() {
     }
   };
 
-  /* ================= UI ================= */
-
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">
-        Grama-AI — Prototype Alpha
-      </h1>
+    <div className="max-w-6xl mx-auto p-6">
 
-      {/* Village Selector */}
-      <div className="mb-4">
-        <label className="block font-semibold mb-1">Select Village</label>
+      {/* ===== FIXED CORNER LOGO ===== */}
+      <img
+  src={logo}
+  alt="Grama-AI Logo"
+  className="
+    fixed top-4 left-4 z-50
+    w-10 h-10
+    max-w-[40px] max-h-[40px]
+    object-contain
+    bg-white rounded-md p-1 shadow
+  "
+/>
+
+
+      {/* ===== Header ===== */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold">
+          Grama-AI — Prototype Alpha
+        </h1>
+        <p className="text-sm text-gray-600">
+          AI-powered rural planning • Phase 1
+        </p>
+      </div>
+
+      {/* ===== Village Selector ===== */}
+      <div className="bg-white border rounded-lg p-4 mb-6 shadow-sm">
+        <label className="block font-semibold mb-2">
+          Select Village
+        </label>
         <select
           className="border p-2 rounded w-full md:w-1/3"
           value={selectedVillage}
@@ -109,78 +123,61 @@ export default function QuickPrototype() {
         </select>
       </div>
 
-      {/* Input Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <Input
-          label="Population"
-          value={inputs.population}
-          onChange={(v) => updateField("population", v)}
-        />
-        <Input
-          label="Area (sq km)"
-          value={inputs.area_sq_km}
-          onChange={(v) => updateField("area_sq_km", v)}
-          step="0.01"
-        />
-        <Input
-          label="Water Supply (LPD)"
-          value={inputs.water_supply_lpd}
-          onChange={(v) => updateField("water_supply_lpd", v)}
-        />
-        <Input
-          label="Green Area (sq km)"
-          value={inputs.green_area_sq_km}
-          onChange={(v) => updateField("green_area_sq_km", v)}
-          step="0.01"
-        />
-        <Input
-          label="Solar Irradiance (kW/m²)"
-          value={inputs.solar_irradiance_kwpm2}
-          onChange={(v) => updateField("solar_irradiance_kwpm2", v)}
-          step="0.01"
-        />
+      {/* ===== Input Fields ===== */}
+      <div className="bg-white border rounded-lg p-4 mb-6 shadow-sm">
+        <h2 className="font-semibold text-lg mb-4">
+          Village Parameters
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input label="Population" value={inputs.population} onChange={(v) => updateField("population", v)} />
+          <Input label="Area (sq km)" value={inputs.area_sq_km} step="0.01" onChange={(v) => updateField("area_sq_km", v)} />
+          <Input label="Water Supply (LPD)" value={inputs.water_supply_lpd} onChange={(v) => updateField("water_supply_lpd", v)} />
+          <Input label="Green Area (sq km)" value={inputs.green_area_sq_km} step="0.01" onChange={(v) => updateField("green_area_sq_km", v)} />
+          <Input label="Solar Irradiance (kW/m²)" value={inputs.solar_irradiance_kwpm2} step="0.01" onChange={(v) => updateField("solar_irradiance_kwpm2", v)} />
+        </div>
       </div>
 
-      {/* Generate Button */}
+      {/* ===== Generate Button ===== */}
       <button
         onClick={handleGenerate}
         disabled={loading}
-        className="px-6 py-2 bg-orange-500 text-white rounded"
+        className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition disabled:opacity-50"
       >
-        {loading ? "Generating..." : "Generate Layout"}
+        {loading ? "Generating…" : "Generate AI Layout"}
       </button>
 
       {error && (
-        <p className="text-red-600 mt-3">❌ {error}</p>
+        <p className="text-red-600 mt-4">❌ {error}</p>
       )}
 
-      {/* Map */}
+      {/* ===== Map ===== */}
       {layout && (
-        <div className="mt-8">
+        <div className="mt-10 bg-white border rounded-lg p-4 shadow-sm">
+          <h2 className="font-semibold mb-3">
+            Generated Village Layout
+          </h2>
           <MapRenderer layout={layout} />
         </div>
       )}
 
-      {/* Sustainability Output */}
+      {/* ===== Sustainability Output ===== */}
       {score !== null && report && (
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Score */}
-          <div className="p-4 border rounded shadow">
+          <div className="p-5 border rounded-lg shadow-sm bg-white">
             <h2 className="text-lg font-bold mb-2">
               🌱 Sustainability Score
             </h2>
-            <div className="text-4xl font-extrabold text-green-600">
-              {score} / 10
+            <div className="text-5xl font-bold text-green-600">
+              {score}
+              <span className="text-lg text-gray-500"> / 10</span>
             </div>
           </div>
 
-          {/* Report */}
-          <div className="p-4 border rounded shadow">
+          <div className="p-5 border rounded-lg shadow-sm bg-white">
             <h2 className="text-lg font-bold mb-3">
               📄 Sustainability Report
             </h2>
-
             <ReportSection title="Strengths" items={report.strengths} />
             <ReportSection title="Weaknesses" items={report.weaknesses} />
             <ReportSection title="Recommendations" items={report.recommendations} />
@@ -188,6 +185,10 @@ export default function QuickPrototype() {
           </div>
         </div>
       )}
+
+      <div className="mt-14 text-center text-xs text-gray-500">
+        Grama-AI • Phase-1 Prototype • Demo Build
+      </div>
     </div>
   );
 }
