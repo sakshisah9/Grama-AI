@@ -1,0 +1,79 @@
+{
+  "village_name": "Wagholi",
+  "district": "Beed",
+  "taluka": "Dharur",
+  "state": "Maharashtra",
+  "area_sq_km": 4.06,
+  "area_acres": 1003.28,
+  "population_total": 854,
+  "population_male": 439,
+  "population_female": 415,
+  "households": 197,
+  "population_density": 210.34,
+  "land_use": {
+    "forest_ha": 0,
+    "non_agri_ha": 4,
+    "barren_land_ha": 0,
+    "grassland_ha": 0,
+    "misc_crop_ha": 0,
+    "cultivable_waste_ha": 9,
+    "net_cultivated_ha": 393,
+    "irrigated_ha": 363,
+    "unirrigated_ha": 30
+  },
+  "water_sources": {
+    "tap": null,
+    "covered_well": null,
+    "uncovered_well": null,
+    "handpump": null,
+    "borewell": 30,
+    "spring": null
+  },
+  "education": {
+    "primary": 1,
+    "middle": 2,
+    "secondary": 0,
+    "senior_secondary": 0
+  },
+  "health": {
+    "dispensary": 0,
+    "sub_center": 0,
+    "veterinary": null
+  },
+  "roads": {
+    "blacktop": 1,
+    "gravel": 1
+  },
+  "transport": {
+    "public_bus": 1,
+    "private_bus": 2,
+    "auto": 2,
+    "taxi": 2
+  },
+  "infrastructure": {
+    "post_office": 1,
+    "mobile_coverage": 1,
+    "commercial_bank": 2,
+    "cooperative_bank": 2,
+    "atm": 2
+  },
+  "sanitation": {
+    "latrine_available": null,
+    "latrine_not_available": null,
+    "bathroom_available": null,
+    "drainage_closed": 2,
+    "drainage_open": 2
+  },
+  "fuel": {
+    "wood": null,
+    "lpg": null
+  },
+  "assets": {
+    "electricity": null,
+    "mobile": null,
+    "tv": null,
+    "cycle": null,
+    "motorcycle": null,
+    "car": null
+  }
+}

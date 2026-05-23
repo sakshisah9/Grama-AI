@@ -1,0 +1,20 @@
+# Global OS clutter
+.DS_Store
+Thumbs.db
+
+# Global IDE
+.idea/
+.vscode/
+
+# Global environment files
+.env
+.env.*
+.env.local
+
+# Node system files (safe)
+npm-debug.log
+yarn-error.log
+
+# Mac / Windows unwanted files
+*.swp
+*.swo

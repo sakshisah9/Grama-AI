@@ -1,0 +1,66 @@
+# ===============================
+#   Normalization (LF only)
+# ===============================
+* text=auto eol=lf
+
+# ===============================
+#   Backend (Python)
+# ===============================
+*.py              text eol=lf
+*.txt             text eol=lf
+*.md              text eol=lf
+*.toml            text eol=lf
+*.yaml            text eol=lf
+*.yml             text eol=lf
+
+# ===============================
+#   Frontend (React + Vite)
+# ===============================
+*.js              text eol=lf
+*.jsx             text eol=lf
+*.ts              text eol=lf
+*.tsx             text eol=lf
+*.css             text eol=lf
+*.html            text eol=lf
+*.json            text eol=lf
+
+# ===============================
+#   GIS / GeoJSON
+# ===============================
+*.geojson         text eol=lf
+*.topojson        text eol=lf
+
+# ===============================
+#   Notebooks
+# ===============================
+*.ipynb           text eol=lf
+
+# ===============================
+#   Images / Binary Files
+# ===============================
+*.png             binary
+*.jpg             binary
+*.jpeg            binary
+*.gif             binary
+*.svg             text
+*.pdf             binary
+
+# ===============================
+#   DB / Model Files
+# ===============================
+*.db              binary
+*.sqlite          binary
+*.pkl             binary
+*.bin             binary
+
+# ===============================
+#   GitHub Linguist Overrides
+# ===============================
+*.py linguist-detectable=true
+*.ipynb linguist-detectable=true
+*.json linguist-vendored=false
+*.yml linguist-vendored=false
+*.yaml linguist-vendored=false
+
+frontend/dist/* linguist-generated=true
+backend/__pycache__/* linguist-generated=true
