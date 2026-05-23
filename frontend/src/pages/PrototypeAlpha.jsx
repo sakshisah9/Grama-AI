@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import MapRenderer from "../components/MapRenderer";
 import logo from "../assets/logo.png";
 
@@ -68,6 +69,7 @@ export default function QuickPrototype() {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
 
   const activeMeta = VILLAGE_META[selectedVillage];
   const presetCards = useMemo(
@@ -133,21 +135,28 @@ export default function QuickPrototype() {
   };
 
   return (
-    <div className="app-shell">
+    <main className={`app-shell ${isMapExpanded ? "workspace--expanded" : ""}`}>
       <div className="page-shell">
-        <div className="topbar">
+        <div className="topbar topbar--workspace">
           <div className="brand-mark">
             <img src={logo} alt="Grama-AI Logo" className="brand-mark__logo" />
             <div>
               <div className="eyebrow">Grama-AI Prototype Alpha</div>
-              <div className="status">Creative village planning studio</div>
+              <div className="status">Village planning workspace</div>
             </div>
           </div>
-          <div className="status">AI-powered rural planning · Phase 1 demo</div>
+          <div className="topbar-links">
+            <Link className="btn btn-secondary btn-small" to="/login">
+              Login
+            </Link>
+            <Link className="btn btn-secondary btn-small" to="/account">
+              Account
+            </Link>
+          </div>
         </div>
 
-        <section className="hero hero--creative">
-          <div className="hero-card hero-card--creative">
+        <section className="hero hero--workspace">
+          <div className="hero-card hero-card--workspace">
             <div className="hero-copy">
               <div className="eyebrow">Village planning, upgraded</div>
               <h1 className="hero-title">
@@ -157,45 +166,8 @@ export default function QuickPrototype() {
                 Choose a village case study, tune the planning inputs, and generate an AI-assisted spatial layout
                 that feels like a design review, not just a form submission.
               </p>
-
-              <div className="hero-actions">
-                <button className="btn btn-primary" onClick={handleGenerate} disabled={loading}>
-                  {loading ? "Generating..." : "Generate AI Layout"}
-                </button>
-                <button className="btn btn-secondary" onClick={() => resetSelection("Hiware Bazar")}>
-                  Reset to Benchmark
-                </button>
-              </div>
-            </div>
-
-            <div className="hero-badges">
-              <div className="stat-pill">
-                <span>Case studies</span>
-                <strong>{Object.keys(VILLAGE_PRESETS).length}</strong>
-              </div>
-              <div className="stat-pill">
-                <span>Current village</span>
-                <strong>{selectedVillage}</strong>
-              </div>
-              <div className="stat-pill">
-                <span>Planning style</span>
-                <strong>{activeMeta.district}, Maharashtra</strong>
-              </div>
             </div>
           </div>
-
-          <aside className="hero-aside hero-aside--creative">
-            <div className="metric-card accent-card" style={{ borderTopColor: activeMeta.accent }}>
-              <div className="eyebrow">Selected village</div>
-              <div className="metric-value">{selectedVillage}</div>
-              <div className="metric-label">{activeMeta.description}</div>
-            </div>
-            <div className="metric-card">
-              <div className="eyebrow">Quick stats</div>
-              <div className="metric-value">{Math.round(inputs.population / inputs.area_sq_km)}</div>
-              <div className="metric-label">Population density used to shape the generated layout.</div>
-            </div>
-          </aside>
         </section>
 
         <section className="feature-grid feature-grid--gallery">
@@ -284,53 +256,87 @@ export default function QuickPrototype() {
           {error && <div className="alert">Failed to generate layout: {error}</div>}
         </section>
 
-        {layout && (
-          <section className="map-card map-card--creative">
-            <div className="panel-header" style={{ marginBottom: "14px" }}>
+        <section className={`workspace-grid ${isMapExpanded ? "workspace-grid--expanded" : ""}`}>
+          <div className="workspace-left">
+            <div className="panel-header workspace-header">
               <div>
                 <div className="panel-title">Generated village layout</div>
-                <div className="panel-description">Spatial plan preview with layered zone visualization.</div>
+                <div className="panel-description">Map stays on the left; expand it if you want a full-view glance.</div>
               </div>
-              <div className="panel-chip">AI layout</div>
-            </div>
-            <div className="map-frame">
-              <MapRenderer layout={layout} />
-            </div>
-          </section>
-        )}
-
-        {score !== null && report && (
-          <section className="results-grid results-grid--creative">
-            <div className="metric-card score-card">
-              <div className="eyebrow">Sustainability score</div>
-              <div className="score-value">
-                {score}
-                <span> / 10</span>
-              </div>
-              <div className="metric-label">
-                A quick summary of the proposed village plan's overall sustainability fit.
-              </div>
+              <button className="btn btn-secondary btn-small" onClick={() => setIsMapExpanded((prev) => !prev)}>
+                {isMapExpanded ? "Collapse map" : "Expand map"}
+              </button>
             </div>
 
-            <div className="report-card panel panel--creative">
-              <div className="panel-header">
-                <div>
-                  <div className="panel-title">Sustainability report</div>
-                  <div className="panel-description">Strengths, gaps, and next-step recommendations.</div>
+            <div className={`map-card map-card--creative ${isMapExpanded ? "map-card--expanded" : ""}`}>
+              <div className="map-frame">
+                <MapRenderer layout={layout} expanded={isMapExpanded} onExpand={() => setIsMapExpanded(true)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="workspace-right">
+            {score !== null && report && (
+              <>
+                <div className="metric-card score-card">
+                  <div className="eyebrow">Sustainability score</div>
+                  <div className="score-value">
+                    {score}
+                    <span> / 10</span>
+                  </div>
+                  <div className="metric-label">
+                    A quick summary of the proposed village plan&apos;s overall sustainability fit.
+                  </div>
                 </div>
-              </div>
 
-              <ReportSection title="Strengths" items={report.strengths} />
-              <ReportSection title="Weaknesses" items={report.weaknesses} />
-              <ReportSection title="Recommendations" items={report.recommendations} />
-              <ReportSection title="Priority Actions" items={report.priority_actions} />
-            </div>
-          </section>
-        )}
+                <div className="report-card panel panel--creative">
+                  <div className="panel-header">
+                    <div>
+                      <div className="panel-title">Sustainability report</div>
+                      <div className="panel-description">Strengths, gaps, and next-step recommendations.</div>
+                    </div>
+                  </div>
+
+                  <ReportSection title="Strengths" items={report.strengths} />
+                  <ReportSection title="Weaknesses" items={report.weaknesses} />
+                  <ReportSection title="Recommendations" items={report.recommendations} />
+                  <ReportSection title="Priority Actions" items={report.priority_actions} />
+                </div>
+              </>
+            )}
+
+            {score === null && (
+              <div className="panel empty-state">
+                <div className="panel-title">No layout yet</div>
+                <div className="panel-description">Generate a layout to see score and report details here.</div>
+              </div>
+            )}
+          </div>
+        </section>
 
         <div className="footer-note">Grama-AI · Phase-1 Prototype · Demo Build</div>
+
+        {isMapExpanded && (
+          <div className="map-modal" role="dialog" aria-modal="true" aria-label="Expanded map view">
+            <div className="map-modal__backdrop" onClick={() => setIsMapExpanded(false)} />
+            <div className="map-modal__sheet">
+              <div className="map-modal__header">
+                <div>
+                  <div className="panel-title">Expanded village map</div>
+                  <div className="panel-description">A focused overlay for full-screen style viewing.</div>
+                </div>
+                <button className="btn btn-secondary btn-small" onClick={() => setIsMapExpanded(false)}>
+                  Close
+                </button>
+              </div>
+              <div className="map-modal__body">
+                <MapRenderer layout={layout} expanded onExpand={() => setIsMapExpanded(true)} />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </main>
   );
 }
 
